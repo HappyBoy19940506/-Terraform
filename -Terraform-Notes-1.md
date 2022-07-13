@@ -4,7 +4,7 @@ Initializing Working Directories
 
 1. directory下 要提前至少有一个tf文件（这个叫configuration file）才可以init
 
-2. init运行时候，会更新原provider requirements, module sources or version constraints, and backend configurations.
+2. init运行时候，会更新原provider requirements, module sources or version constraints, and backend configurations.（ 也就是.terraform的系统内容）
 
 3.  如果不确定该不该run 这个命令, always safe to run multiple times
 
@@ -13,7 +13,13 @@ Initializing Working Directories
 ============================================================
 ## 2. terraform get
 ```
+The terraform get command is used to download and update modules mentioned in the root module.
 
+terraform get -update 
+
+-update （只更新，不下载）- If specified, modules that are already downloaded will be checked for updates and the updates will be downloaded if present.
+
+-只会init modules的部分，其他部分不init， 所以init可以代替 get。
 ```
 ============================================================
 ## 3.完成init的working directory一般有：
