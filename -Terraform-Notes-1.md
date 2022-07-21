@@ -50,8 +50,10 @@ https://www.terraform.io/language/settings/backends/configuration
 ```
 ============================================================
 ## 7.  .tfstate
+```.
 ```
-```
+https://www.devopsschool.com/blog/what-is-terraform-tfstate-backup-file-in-terraform/#:~:text=By%20default%2C%20a%20backup%20of,metadata%20information%20about%20your%20infrastructure.
+
 ============================================================
 ## 8. depends_on[resource.name] 或者[module.name]
 ```
