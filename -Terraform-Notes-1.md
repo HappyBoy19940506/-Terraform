@@ -217,8 +217,8 @@ Use Route 53 with an S3 website to redirect one domain to another domain through
 
 Amazon S3 static web hosting supports only the HTTP protocol. You must use a CloudFront distribution for redirection from HTTP to HTTPS.
 
--造成的区别就是 并不能造成视觉效果上的跳转：你可以看到 A redirect to B
--cloudfront CNAME的方法 A的URL并不会发生变化。
+-造成的区别就是 cloudfront的方法并不能造成视觉效果上的跳转：你不可以肉眼看到 A redirect to B
+-也就是说cloudfront CNAME的方法 A的URL并不会发生变化。
 
 
 ```
