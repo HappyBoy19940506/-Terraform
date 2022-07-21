@@ -170,7 +170,10 @@ sh 既可以单引号 也可以 双引号哦
 https://www.terraform.io/language/meta-arguments/depends_on
 
 ============================================================
-## 1.
+## 16. ACM-SSL certificate by Terrraform
 ```
+depends_on Route53 moudle 
 ```
+https://www.youtube.com/watch?v=S_KWZUexe4g
+
 ============================================================
