@@ -146,7 +146,7 @@ https://stackoverflow.com/questions/56151004/vscode-and-jenkinsfiles-how-do-i-fo
 ## 13. 双引号 单引号 一些思辨
 ```
 echo " wo shi ${NAME} " 
-echo要用双引号
+echo要用双引号 ,如果用单引号就报错了
 sh 'mkdir ${NAME}'   ---  是“mkdir ${NAME}"
 sh 既可以单引号 也可以 双引号哦
 ```
