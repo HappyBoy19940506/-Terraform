@@ -188,26 +188,78 @@ https://faun.pub/using-terraform-to-create-an-s3-website-bucket-347eda50239c
 ```
 https://docs.docker.com/engine/reference/commandline/tag/
 ============================================================
-## 1
+## 19 S3（not public）-CLOUDFRONT-OAI (手动）
 ```
+If you don’t use an OAI, the S3 bucket must allow public access.
+
+OAI prevents users from viewing your S3 files by simply using the direct URL for the file, for example: 
+
+https://app-private-bucket-stormit.s3.eu-central-1.amazonaws.com/pics/logo.png 
+
+
+Your users can only use the URL of your CloudFront distribution, for example: https://d2whx7jax6hbi5.cloudfront.net/pics/logo.png
+
+```
+https://www.stormit.cloud/post/cloudfront-origin-access-identity
+============================================================
+## 20 website redirect- if s3 not public
+```
+不需要2个s3了，如果用cloudfront的话，意味着不需要两个s3来做redirect,你也做不了说实话，
+
+One of the main reasons for using the S3 static website hosting function is that you can very simply use redirection rules. 
+
+This will not work if you use the OAI function in CloudFront. 
+
+特别注意：2个s3的方法在 cloudfront使用OAI-也就是s3并不是public access的时候不能使用。 确实，无法公共访问你还怎么redirect。
+用#19中的方法。在 CNAME处，添加 多个 申请下证书的域名，就可以全部指向到 origin了。
+
+Use Route 53 with an S3 website to redirect one domain to another domain through an HTTP redirect. 
+
+Amazon S3 static web hosting supports only the HTTP protocol. You must use a CloudFront distribution for redirection from HTTP to HTTPS.
+
+-造成的区别就是 并不能造成视觉效果上的跳转：你可以看到 A redirect to B
+-cloudfront CNAME的方法 A的URL并不会发生变化。
+
 
 ```
 
 ============================================================
-## 1
+## 21 adding an SSL certificate is that your browser still shows your site as insecure
 ```
+1.  your code contains some http url, not https url.
+2.  你如果直接用s3 静态hosting，你拉出来的route53的那个url 就算有证书 也不是secure的，因为：
+SSL certificates are not connected to a domain's DNS record (via Route 53).
 
-```
+Instead, they are connected to one or more specific infrastructure components.
 
-============================================================## 1
-```
+SSL certificates that you create from ACM can be used with:
+
+AWS Elastic Load Balancer
+AWS CloudFront
+
+Create your infrastructure including one or more of those components and then attach your ACM SSL certificate to that.
+
+-也就是说 ssl证书使用在 cloudfornt上的，而不是给你route53的domain name的，所以 你要想一个域名获得 安全标志，
+
+-你需要 ：在cloudfront的一个distribution上面的 alternative domain name绑定上该 域名，
+
+-并且 --- 在 behavior 设置成： 
+In AWS Cloudfront, click on your distribution, then click on "Behaviors"
+
+Set behavior to "Redirect HTTP to HTTPS"
+
+- s3 web hosting 那套只能用来 http的redirect
 
 ```
 
 ============================================================
-## 1
+## 22 cloudfront 和 s3 的思辨
 ```
+1. cloudfront的存在 - 我不想用户有机会直接访问的s3的bucket的url，一定要通过cloudfront
 
+2. 设置cloudfront的cname 并且给他证书，让他可以走https，默认的s3 静态网址hosting是不能走https protocol的，只支持http
+
+3. cloudftont 缓存技术，让你临近get数据，更快，更安全
 ```
 
 ============================================================
