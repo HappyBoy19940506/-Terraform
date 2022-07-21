@@ -4,7 +4,7 @@ Initializing Working Directories
 
 1. directory下 要提前至少有一个tf文件（这个叫configuration file）才可以init
 
-2. init运行时候，会更新原provider requirements, module sources or version constraints, and backend configurations.（ 也就是.terraform的系统内容）
+2. init运行时候，会更新原provider requirements, module sources or version constraints, and backend configurations.（ 也就是.terraform的系统内容）特别是modules的变化，一定要init
 
 3.  如果不确定该不该run 这个命令, always safe to run multiple times
 
@@ -29,7 +29,7 @@ terraform get -update
 
 2. 隐藏目录.terraform 存储modules，plug-ins，workspaces的切换，和backend configuration .terraform 自己管理
 
-3.tfstate文件，或者 tfstate.d 文件 用来管理local backend的状态文件
+3. tfstate文件，或者 tfstate.d 文件 用来管理local backend的状态文件
 
 
 ```
@@ -126,16 +126,29 @@ resource "aws_instance_xxx" "web1" {
 ```
 ```
 ============================================================
-## 1.
+## 11. acl 与 s3 policy bucket的关系
 ```
+1. acl推荐 关闭， 用 bucket owner enforced
+2. 如果没关， objec要设 --acl  public-read等属性
+
 ```
+https://docs.aws.amazon.com/AmazonS3/latest/userguide/ensure-object-ownership.html#object-ownership-requiring-bucket-owner-enforced
+https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl-overview.html#specifying-grantee
+https://aws.amazon.com/about-aws/whats-new/2021/11/amazon-s3-object-ownership-simplify-access-management-data-s3/
 ============================================================
-## 1.
+## 12. jenkinsfile如何format？
 ```
+变成js 再用 右键， format document
+
 ```
+https://stackoverflow.com/questions/56151004/vscode-and-jenkinsfiles-how-do-i-format-them
 ============================================================
-## 1.
+## 13. 双引号 单引号 一些思辨
 ```
+echo " wo shi ${NAME} " 
+echo要用双引号
+sh 'mkdir ${NAME}'   ---  是“mkdir ${NAME}"
+sh 既可以单引号 也可以 双引号哦
 ```
 ============================================================
 ## 1.
