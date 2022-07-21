@@ -54,6 +54,7 @@ https://www.terraform.io/language/settings/backends/configuration
 ```
 https://www.devopsschool.com/blog/what-is-terraform-tfstate-backup-file-in-terraform/#:~:text=By%20default%2C%20a%20backup%20of,metadata%20information%20about%20your%20infrastructure.
 
+https://www.pkslow.com/archives/terraform-state#:~:text=State%20%E7%8A%B6%E6%80%81%E6%98%AFTerraform%E7%94%A8,%E7%8A%B6%E6%80%81%EF%BC%8C%E7%8E%B0%E6%9C%89%E7%9A%84%E6%A0%B7%E5%AD%90%E3%80%82
 ============================================================
 ## 8. depends_on[resource.name] 或者[module.name]
 ```
@@ -175,11 +176,11 @@ depends_on Route53 moudle
 ```
 https://www.youtube.com/watch?v=S_KWZUexe4g
 ============================================================
-## 1
+## 17.Using Terraform to Create an S3 Website Bucket
 ```
 
 ```
-
+https://faun.pub/using-terraform-to-create-an-s3-website-bucket-347eda50239c
 ============================================================
 ## 1
 ```
