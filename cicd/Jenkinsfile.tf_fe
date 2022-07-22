@@ -30,9 +30,6 @@ pipeline {
             steps {
                 dir('./applications'){
                     withAWS(credentials: "${AWS_S3_CREDENTIALS}", region: "${AWS_S3_REGION}"){
-                        sh 'terraform workspace new prod'
-                        sh 'terraform workspace new dev'
-                        sh 'terraform workspace list'
                         sh 'terraform init'
                     }
                 }
@@ -49,7 +46,7 @@ pipeline {
             steps {
                 dir('./applications'){
                     withAWS(credentials: "${AWS_S3_CREDENTIALS}", region: "${AWS_S3_REGION}"){
-                        sh 'terraform workspace select dev'
+                        sh 'terraform workspace new dev'
                         sh 'terraform destroy -var-file terraform-dev.tfvars -auto-approve'
                     }
                 }
@@ -65,7 +62,7 @@ pipeline {
             steps {
                 dir('./applications'){
                     withAWS(credentials: "${AWS_S3_CREDENTIALS}", region: "${AWS_S3_REGION}"){
-                        sh 'terraform workspace select prod'
+                        sh 'terraform workspace new prod'
                         sh 'terraform destroy -var-file terraform-prod.tfvars -auto-approve'
                     }
                 }
@@ -80,7 +77,7 @@ pipeline {
             steps {
                 dir('./applications'){
                     withAWS(credentials: "${AWS_S3_CREDENTIALS}", region: "${AWS_S3_REGION}"){
-                        sh 'terraform workspace select dev'
+                        sh 'terraform workspace new dev'
                         sh 'terraform apply -auto-approve -var-file terraform-dev.tfvars'
                     }
                 }
@@ -94,7 +91,7 @@ pipeline {
             steps {
                 dir('./applications'){
                     withAWS(credentials: "${AWS_S3_CREDENTIALS}", region: "${AWS_S3_REGION}"){
-                        sh 'terraform workspace select prod'
+                        sh 'terraform workspace new prod'
                         sh 'terraform apply -auto-approve -var-file terraform-prod.tfvars'
                     }
                 }

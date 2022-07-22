@@ -1,12 +1,12 @@
-# terraform {
-#   backend "s3" {
-#     encrypt        = true
-#     bucket         = "s3-terraform-remote-state-storage-happyboy"
-#     region         = "ap-southeast-2"
-#     key            = "./terraform.tfstate"
-#     # dynamodb_table = "terraform-state-lock-dynamodb"
-#   }
-# }
+terraform {
+  backend "s3" {
+    encrypt        = true
+    bucket         = "s3-terraform-remote-state-storage-happyboy"
+    region         = "ap-southeast-2"
+    key            = "./terraform.tfstate"
+    # dynamodb_table = "terraform-state-lock-dynamodb"
+  }
+}
 
 # resource "aws_dynamodb_table" "dynamodb-terraform-state-lock" {
 #   name         = "terraform-state-lock-dynamodb"
@@ -18,7 +18,3 @@
 #   }
 # }
 
-# output "dynamodb_table_name" {
-#   value       = aws_dynamodb_table.dynamodb-terraform-state-lock.name
-#   description = "The name of the DynamoDB table"
-# }
