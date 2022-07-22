@@ -48,8 +48,10 @@ pipeline {
             }
             steps {
                 dir('./applications'){
-                    sh 'terraform workspace select dev'
-                    sh 'terraform destroy -var-file terraform-dev.tfvars -auto-approve'
+                    withAWS(credentials: "${AWS_S3_CREDENTIALS}", region: "${AWS_S3_REGION}"){
+                        sh 'terraform workspace select dev'
+                        sh 'terraform destroy -var-file terraform-dev.tfvars -auto-approve'
+                    }
                 }
             }
         }
@@ -62,8 +64,10 @@ pipeline {
             }
             steps {
                 dir('./applications'){
-                    sh 'terraform workspace select prod'
-                    sh 'terraform destroy -var-file terraform-prod.tfvars -auto-approve'
+                    withAWS(credentials: "${AWS_S3_CREDENTIALS}", region: "${AWS_S3_REGION}"){
+                        sh 'terraform workspace select prod'
+                        sh 'terraform destroy -var-file terraform-prod.tfvars -auto-approve'
+                    }
                 }
             }
         }
@@ -75,8 +79,10 @@ pipeline {
             }
             steps {
                 dir('./applications'){
-                    sh 'terraform workspace select dev'
-                    sh 'terraform apply -auto-approve -var-file terraform-dev.tfvars'
+                    withAWS(credentials: "${AWS_S3_CREDENTIALS}", region: "${AWS_S3_REGION}"){
+                        sh 'terraform workspace select dev'
+                        sh 'terraform apply -auto-approve -var-file terraform-dev.tfvars'
+                    }
                 }
             }
         }
@@ -87,8 +93,10 @@ pipeline {
             }
             steps {
                 dir('./applications'){
-                    sh 'terraform workspace select prod'
-                    sh 'terraform apply -auto-approve -var-file terraform-prod.tfvars'
+                    withAWS(credentials: "${AWS_S3_CREDENTIALS}", region: "${AWS_S3_REGION}"){
+                        sh 'terraform workspace select prod'
+                        sh 'terraform apply -auto-approve -var-file terraform-prod.tfvars'
+                    }
                 }
             }
         }
