@@ -263,8 +263,12 @@ Set behavior to "Redirect HTTP to HTTPS"
 ```
 
 ============================================================
-## 1
-```
+## 23 当使用cloudfront时，s3 需要- 
+``` 
+1.   block all 4 access
+2.   update policy about OAI access objects
+3.   disabled static website hosting
+
 
 ```
 
