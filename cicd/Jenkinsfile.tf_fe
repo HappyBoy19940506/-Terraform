@@ -71,8 +71,10 @@ pipeline {
 
         stage('Terraform Apply - Dev') {
             when {
-                expression { params['Environment'] == 'Dev' }
-
+                allOf {
+                    expression { params['Terraform Destroy'] == false }
+                    expression { params['Environment'] == 'Dev' }
+                }
             }
             steps {
                 dir('./applications'){
@@ -84,9 +86,11 @@ pipeline {
             }
         }
         stage('Terraform Apply - Prod') {
-            when {                       
-                expression { params['Environment'] == 'Prod' }
-
+            when {
+                allOf {
+                    expression { params['Terraform Destroy'] == false }                       
+                    expression { params['Environment'] == 'Prod' }
+                }
             }
             steps {
                 dir('./applications'){
