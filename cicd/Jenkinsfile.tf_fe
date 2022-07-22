@@ -19,7 +19,7 @@ pipeline {
                 timeout(time: 600, unit: 'SECONDS')
             }
             input {
-                message "Everything looks good, ready to terraform apply ?"
+                message "Everything looks good, ready to continue ?"
                         ok "Yes,Deploy."
             }
             steps {
